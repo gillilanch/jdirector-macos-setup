@@ -37,23 +37,13 @@ sudo rm -rf "/Applications/JDirector"
 sudo cp -R "$SCRIPT_DIR/JDirector" /Applications/
 sudo chown -R "$USER":admin "/Applications/JDirector"
 
-# 4. Security & Permission Scrub (The essential stuff)
+# 4. Security & Permission Scrub
 echo "🔓 Scrubbing macOS security flags..."
 sudo xattr -cr "/Applications/JDirector"
 sudo chmod -R +x "/Applications/JDirector/Apantac jDirector.app/Contents/MacOS"
 sudo chmod +x "/Applications/JDirector/Apantac_JDirector.jar"
 
-# 5. Create Desktop Shortcut
-echo "🖥 Creating Desktop Shortcut..."
-LAUNCHER_PATH="$HOME/Desktop/Launch_JDirector.command"
-cat <<EOF > "$LAUNCHER_PATH"
-#!/bin/bash
-java -jar "/Applications/JDirector/Apantac_JDirector.jar"
-EOF
-chmod +x "$LAUNCHER_PATH"
-
 echo -e "${GREEN}✅ Setup Complete!${NC}"
 echo "---------------------------------------------------"
-echo "You can now use JDirector from your Applications folder"
-echo "or the shortcut on your Desktop."
+echo "JDirector is now ready in your Applications folder."
 echo "---------------------------------------------------"

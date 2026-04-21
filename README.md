@@ -13,7 +13,6 @@ App Deployment: Moves the JDirector folder to your /Applications directory.
 
 Security Scrub: Removes macOS "Quarantine" flags so the app and JAR open without security warnings.
 
-Desktop Shortcut: Creates a Launch_JDirector helper on your desktop to ensure the app opens reliably via Java.
 
 ## 📂 Manual Installation
 If you prefer to clone the repository manually:
@@ -41,8 +40,6 @@ To install everything automatically, open your **Terminal** (Cmd + Space, type "
 ```
 
 ## ❓ Troubleshooting
-"The application can't be opened"
-If the .app file in your Applications folder shows an error, use the Launch_JDirector shortcut created on your Desktop. This uses the Java runtime directly to bypass macOS app-bundling restrictions.
 
 **Security & Privacy**
 
