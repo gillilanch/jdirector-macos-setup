@@ -60,4 +60,4 @@ If you see a `java: command not found` error immediately after installation, sim
 source ~/.zshrc
 ```
 
-Created by gillilanch
+*Created by gillilanch*
