@@ -54,7 +54,7 @@ If macOS blocks the app:
 3. Click Open Anyway next to the JDirector notification.
 
 **Java Command Not Found**
-If you see a 'java: command not found' error immediately after installation, simply restart your terminal or run:
+If you see a `java: command not found` error immediately after installation, simply restart your terminal or run:
 
 ```bash
 source ~/.zshrc
