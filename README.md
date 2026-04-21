@@ -20,23 +20,24 @@ If you prefer to clone the repository manually:
 
 1. Clone the repo:
 
-'''bash
+```bash
 git clone [https://github.com/gillilanch/jdirector-macos-setup.git](https://github.com/gillilanch/jdirector-macos-setup.git)
 cd jdirector-macos-setup
+```
 
 2. Run the installer:
 
-'''bash
+```bash
 chmod +x install.sh
 ./install.sh
-
+```
 
 ## ⚡️ Quick Start (Recommended)
 
 To install everything automatically, open your **Terminal** (Cmd + Space, type "Terminal") and paste the following command:
 
 ```bash
-/bin/bash -c "git clone [https://github.com/gillilanch/jdirector-macos-setup.git](https://github.com/gillilanch/jdirector-macos-setup.git) /tmp/jd_install && cd /tmp/jd_install && chmod +x install.sh && ./install.sh && cd ~ && rm -rf /tmp/jd_install"
+/bin/bash -c "git clone https://github.com/gillilanch/jdirector-macos-setup.git /tmp/jd_install && cd /tmp/jd_install && chmod +x install.sh && ./install.sh && cd ~ && rm -rf /tmp/jd_install"
 ```
 
 ## ❓ Troubleshooting
