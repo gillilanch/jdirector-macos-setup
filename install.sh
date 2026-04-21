@@ -20,31 +20,23 @@ if ! brew list openjdk &> /dev/null; then
     sudo ln -sfn $(brew --prefix)/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
 fi
 
-# 2. Set Paths
-SHELL_PROFILE="$HOME/.zshrc"
-BREW_PREFIX=$(brew --prefix)
-if ! grep -q "openjdk/bin" "$SHELL_PROFILE"; then
-    echo -e "\n# Java Path for JDirector\nexport PATH=\"$BREW_PREFIX/opt/openjdk/bin:\$PATH\"\nexport CPPFLAGS=\"-I$BREW_PREFIX/opt/openjdk/include\"" >> "$SHELL_PROFILE"
-fi
-
-# 3. Move Folder & Change Ownership
+# 2. Move Folder & Set Permissions
 echo "Installing to /Applications..."
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 sudo rm -rf "/Applications/JDirector"
 sudo cp -R "$SCRIPT_DIR/JDirector" /Applications/
 
-# GIVE USER PERMISSION (This fixes the -10006 error)
-sudo chown -R $USER:admin "/Applications/JDirector"
+# Crucial: Give the folder to the user so the icon script can write to it
+sudo chown -R "$USER":admin "/Applications/JDirector"
+sudo chmod -R 775 "/Applications/JDirector"
 
-# 4. Security & Permission Scrub
+# 3. Security & Permission Scrub
 echo "🔓 Scrubbing macOS security flags..."
 sudo xattr -cr "/Applications/JDirector"
-
-echo "🔧 Repairing executable permissions..."
 sudo chmod -R +x "/Applications/JDirector/Apantac jDirector.app/Contents/MacOS"
 sudo chmod +x "/Applications/JDirector/Apantac_JDirector.jar"
 
-# 5. Create Desktop Shortcut
+# 4. Create Desktop Shortcut
 echo "🖥 Creating Desktop Shortcut..."
 LAUNCHER_PATH="$HOME/Desktop/Launch_JDirector.command"
 cat <<EOF > "$LAUNCHER_PATH"
@@ -53,23 +45,26 @@ java -jar "/Applications/JDirector/Apantac_JDirector.jar"
 EOF
 chmod +x "$LAUNCHER_PATH"
 
-# 6. Apply Custom Icons
+# 5. Apply Custom Icons (Revised Logic)
 echo "🎨 Customizing folder and launcher icons..."
-# Using the folder itself and the launcher file
-osascript <<EOT
-tell application "Finder"
-    try
-        set theApp to POSIX file "/Applications/JDirector/Apantac jDirector.app" as alias
-        set theFolder to POSIX file "/Applications/JDirector" as alias
-        set theLauncher to POSIX file "$LAUNCHER_PATH" as alias
-        
-        -- Copy icon from the app to the parent folder and the shortcut
-        set icon of theFolder to icon of theApp
-        set icon of theLauncher to icon of theApp
-    on error errStr number errNum
-        log "Icon error: " & errStr & " (" & errNum & ")"
-    end try
-end tell
+# We give the OS 2 seconds to "settle" the file move
+sleep 2
+
+# We run this as the USER, not as ROOT, to satisfy the Finder
+sudo -u "$USER" osascript <<EOT
+try
+    set theApp to POSIX file "/Applications/JDirector/Apantac jDirector.app"
+    set theFolder to POSIX file "/Applications/JDirector"
+    set theLauncher to POSIX file "$LAUNCHER_PATH"
+    
+    tell application "Finder"
+        set icon of (item theFolder) to icon of (item theApp)
+        set icon of (item theLauncher) to icon of (item theApp)
+        update (item theFolder)
+    end tell
+on error errStr number errNum
+    log "Icon skip: " & errStr
+end try
 EOT
 
 echo -e "${GREEN}✅ Setup Complete!${NC}"
