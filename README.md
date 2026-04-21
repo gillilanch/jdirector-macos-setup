@@ -9,7 +9,5 @@ This repository contains a one-click installer for the **JDirector** environment
 
 ## 🚀 Installation
 
-1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/YOUR_USERNAME/jdirector-macos-setup.git](https://github.com/YOUR_USERNAME/jdirector-macos-setup.git)
-   cd jdirector-macos-setup
+   /bin/bash -c "git clone https://github.com/gillilanch/jdirector-macos-setup.git /tmp/jd_install && cd /tmp/jd_install && chmod +x install.sh && ./install.sh && cd ~ && rm -rf /tmp/jd_install"
