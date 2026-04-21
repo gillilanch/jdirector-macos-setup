@@ -58,5 +58,6 @@ If you see a 'java: command not found' error immediately after installation, sim
 
 ```bash
 source ~/.zshrc
+```
 
 Created by gillilanch
