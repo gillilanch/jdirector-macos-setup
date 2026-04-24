@@ -1,61 +1,49 @@
-# JDirector macOS Auto-Installer 🚀
+# JDirector macOS Setup #
 
-This repository provides a streamlined, automated way to set up the **JDirector** environment on macOS. It handles all dependencies, security flags, and directory placements in one go.
+## Overview ##
+A streamlined automated installer to configure **JDirector** on macOS environments. This script handles dependencies, directory structures, and permission configurations in one go.
 
-## 🛠 What this script does
-Homebrew: Checks for installation; installs it if missing.
+---
 
-OpenJDK: Installs and configures the Java environment.
+## 🚀 Quick Start
 
-Path Configuration: Automatically updates your .zshrc so java is recognized globally.
+Run the following command in your Terminal to begin the installation. This will download the latest configuration and set up your environment automatically.
 
-App Deployment: Moves the JDirector folder to your /Applications directory.
+```bash
+curl -sSL [https://raw.githubusercontent.com/gillilanch/jdirector-macos-setup/main/setup.sh](https://raw.githubusercontent.com/gillilanch/jdirector-macos-setup/main/setup.sh) | bash
 
-Security Scrub: Removes macOS "Quarantine" flags so the app and JAR open without security warnings.
+🛠️ What this script does
+The installer automates the manual setup process to ensure consistency across machines:
 
+Dependency Check: Verifies Homebrew and required CLI tools.
 
-## 📂 Manual Installation
-If you prefer to clone the repository manually:
+Environment Setup: Creates necessary directories in /usr/local/ or ~/.
+
+Permissions: Configures execution bits for JDirector binaries.
+
+Cleanup: Removes all temporary installation files once finished.
+
+📋 Prerequisites
+macOS: 12.0 (Monterey) or newer recommended.
+
+Git: Should be installed (if not, the script will prompt you).
+
+Sudo Access: You may be prompted for your password to set system permissions.
+
+🛠 Manual Installation
+If you prefer to audit the code before running it, you can install manually:
 
 1. Clone the repo:
 
-```bash
 git clone [https://github.com/gillilanch/jdirector-macos-setup.git](https://github.com/gillilanch/jdirector-macos-setup.git)
-cd jdirector-macos-setup
-```
 
 2. Run the installer:
 
-```bash
+cd jdirector-macos-setup
 chmod +x install.sh
 ./install.sh
-```
 
-## ⚡️ Quick Start (Recommended)
+🤝 Contributing
+Found a bug or have a feature request? Please open an Issue or submit a Pull Request.
 
-To install everything automatically, open your **Terminal** (Cmd + Space, type "Terminal") and paste the following command:
-
-```bash
-/bin/bash -c "git clone https://github.com/gillilanch/jdirector-macos-setup.git /tmp/jd_install && cd /tmp/jd_install && chmod +x install.sh && ./install.sh && cd ~ && rm -rf /tmp/jd_install"
-```
-
-## ❓ Troubleshooting
-
-**Security & Privacy**
-
-If macOS blocks the app:
-
-1. Open System Settings > Privacy & Security.
-
-2. Scroll down to the "Security" section.
-
-3. Click Open Anyway next to the JDirector notification.
-
-**Java Command Not Found**
-If you see a `java: command not found` error immediately after installation, simply restart your terminal or run:
-
-```bash
-source ~/.zshrc
-```
-
-*Created by gillilanch*
+Maintained by gillilanch
