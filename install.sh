@@ -8,6 +8,23 @@ BLUE='\033[0;34m'
 RED='\033[0;31m'
 NC='\033[0m' 
 
+#!/bin/bash
+set -e
+
+# --- NEW SECTION: Prime Sudo ---
+echo -e "${BLUE}==>${NC} Checking for administrative access..."
+# This asks for your password once at the start
+if ! sudo -v; then
+    echo -e "${RED}Error: This script requires administrator access.${NC}"
+    exit 1
+fi
+
+# Keep-alive: update existing sudo time stamp until script has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+# -------------------------------
+
+# ... the rest of your script ...
+
 echo -e "${BLUE}🚀 Starting JDirector Professional Installation...${NC}"
 
 # 1. Homebrew Installation & Path Activation
