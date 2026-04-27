@@ -8,23 +8,21 @@ A streamlined automated installer to configure **JDirector** on macOS environmen
 
 **Run the following command in your Terminal to begin the installation. This will download the latest configuration and set up your environment automatically.**
 
-```
-curl -sSL https://raw.githubusercontent.com/gillilanch/jdirector-macos-setup/main/setup.sh | bash
-```
----
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/gillilanch/jdirector-macos-setup/main/setup.sh)"
 
-## 🛠️ What this script does ##
-**The installer automates the manual setup process to ensure consistency across machines:**
+🛠️ What this script does
+The installer automates the manual setup process to ensure consistency across machines:
 
-**Dependency Check:** [Verifies Homebrew and required CLI tools.]()
+Dependency Check: Verifies Homebrew and required CLI tools.
 
-**Environment Setup:** [Creates necessary directories in /usr/local/ or ~/.]()
+Environment Setup: Creates necessary directories in /usr/local/ or ~/.
 
-**Permissions:** [Configures execution bits for JDirector binaries.]()
+Permissions: Configures execution bits for JDirector binaries.
 
-**Cleanup:** [Removes all temporary installation files once finished.]()
+Cleanup: Removes all temporary installation files once finished.
 
-### 📋 Prerequisites ###
+📋 Prerequisites
 macOS: 12.0 (Monterey) or newer recommended.
 
 Git: Should be installed (if not, the script will prompt you).
