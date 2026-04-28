@@ -10,6 +10,7 @@ A streamlined automated installer to configure **JDirector** on macOS environmen
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/gillilanch/jdirector-macos-setup/main/setup.sh)"
+```
 
 🛠️ What this script does
 The installer automates the manual setup process to ensure consistency across machines:
